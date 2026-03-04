@@ -34,3 +34,11 @@ def movies_by_id(id:str):
 def movies_name(q: str = ""):
     r_name = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&s={q}")
     return r_name.json()
+
+
+#ver si "peliculas" coincide con "omdbapi" y ordenarlas por "Ratings" / "imdbRating" / "imdbVotes" / etc
+
+@app.get("/movies/popular")
+def movies_popularity():
+    r_name = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&s={q}")
+    return r_popularity.json()
