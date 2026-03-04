@@ -18,11 +18,19 @@ def obtener_peliculas():
     r = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&t=titanic")
     return r.json()
 
+
 @app.get("/movies")
 def movies():
     return peliculas
 
-@app.get("/movies/{pelicula}")
-def movies_by_id(pelicula:str):
-    r_id = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&t={pelicula}")
+
+@app.get("/movies/{id}")
+def movies_by_id(id:str):
+    r_id = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&t={id}")
     return r_id.json()
+
+
+@app.get("/movies/search/")
+def movies_name(q: str = ""):
+    r_name = requests.get(f"http://www.omdbapi.com/?apikey={os.environ.get("APIKEY_OMDBAPI")}&s={q}")
+    return r_name.json()
